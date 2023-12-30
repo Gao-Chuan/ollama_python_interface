@@ -78,13 +78,14 @@ print("LLM:>>", response)
 - **Returns:**
   - History list containing all metadata.
 - **How to use metadata to find the performance bottle neck**
-  - `format`: the format to return a response in. Currently the only accepted value is `json`
-  - `options`: additional model parameters listed in the documentation for the Modelfile such as `temperature`
-  - `system`: system message to (overrides what is defined in the `Modelfile`)
-  - `template`: the full prompt or prompt template (overrides what is defined in the `Modelfile`)
-  - `context`: the context parameter returned from a previous request to `/generate`, this can be used to keep a short conversational memory
-  - `stream`: if `false` the response will be returned as a single response object, rather than a stream of objects
-  - `raw`: if `true` no formatting will be applied to the prompt. You may choose to use the `raw` parameter if you are specifying a full templated prompt in your request to the API.
+  - `total_duration`: time spent generating the response
+  - `load_duration`: time spent in nanoseconds loading the model
+  - `prompt_eval_count`: number of tokens in the prompt
+  - `prompt_eval_duration`: time spent in nanoseconds evaluating the prompt
+  - `eval_count`: number of tokens the response
+  - `eval_duration`: time in nanoseconds spent generating the response
+  - `context`: an encoding of the conversation used in this response, this can be sent in the next request to keep a conversational memory
+  - `response`: empty if the response was streamed, if not streamed, this will contain the full response
 
 ### Method: `getCurrentContext(self)`
 - **Functionality:**
